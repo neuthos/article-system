@@ -1,4 +1,6 @@
-## Question 1: Setelah seluruh proses analisisnya selesai. Anda diminta menunjukkan views dari beberapa tampilan terutama artikel yang akan dipublish. Tuliskan source code Laravel untuk tampilan (views) tersebut. yang telah terbagi menjadi beberapa komponen! (LO2)
+# Laravel Article Management System - Assignment Solutions
+
+## Question 1: Views dan Komponen Tampilan
 
 Kami telah membuat tampilan untuk sistem artikel yang terbagi menjadi beberapa komponen:
 
@@ -18,7 +20,7 @@ Kami telah membuat tampilan untuk sistem artikel yang terbagi menjadi beberapa k
    [View Code Index](https://github.com/neuthos/article-system/blob/main/resources/views/articles/index.blade.php)
    [View Code Show](https://github.com/neuthos/article-system/blob/main/resources/views/articles/show.blade.php)
 
-## Question 2: Tuliskan perintah untuk membuat komponen, model, dan migrasi untuk membuat tabel yang akan digunakan sebagai artikel. Primary key tidak boleh hanya id tetapi id_artikel (jika menggunakan tabel artikel atau id_blog jika menggunakan tabel blog! (LO2)
+## Question 2: Perintah untuk Membuat Komponen, Model, dan Migrasi
 
 ### Membuat Model dan Migrasi dengan Primary Key Kustom
 
@@ -30,7 +32,7 @@ Kemudian modifikasi file migrasi di `database/migrations/xxxx_xx_xx_create_artic
 
 ```php
 Schema::create('articles', function (Blueprint $table) {
-    $table->id('id_article');
+    $table->id('id_article'); // Custom primary key
     $table->string('title');
     $table->string('slug')->unique();
     $table->string('author');
@@ -57,7 +59,7 @@ php artisan make:component ArticleList
 php artisan make:component ArticleDetail
 ```
 
-## Question 3: Isikan data pada tabel artikel atau blog, sejumlah 25 artikel (tidak boleh pake lorem)! (LO2)
+## Question 3: Mengisi Data Artikel
 
 Seeder dibuat untuk mengisi 25 artikel dengan data asli (bukan lorem ipsum):
 
@@ -73,16 +75,25 @@ Untuk menjalankan seeder:
 php artisan db:seed --class=ArticleSeeder
 ```
 
-## Question 4: Tuliskan perubahan pada source code pada class, routes, dan views, sehingga data yang ada pada database bisa tampil pada artikel!
+## Question 4: Perubahan pada Source Code untuk Menampilkan Data
 
-### Perubahan pada Controller
+### Perubahan pada Class
 
-Kami telah mengimplementasikan controller yang mengambil dan menampilkan data dari database:
-[View ArticleController Code](https://github.com/neuthos/article-system/blob/main/app/Http/Controllers/ArticleController.php)
+1. **Model Article** - Menggunakan primary key kustom dan relasi
+   [View Model Code](https://github.com/neuthos/article-system/blob/main/app/Models/Article.php)
+
+2. **Component Classes** - Kelas komponen untuk menangani data artikel
+   [View ArticleCard Class](https://github.com/neuthos/article-system/blob/main/app/View/Components/ArticleCard.php)
+   [View ArticleList Class](https://github.com/neuthos/article-system/blob/main/app/View/Components/ArticleList.php)
+   [View ArticleDetail Class](https://github.com/neuthos/article-system/blob/main/app/View/Components/ArticleDetail.php)
+
+3. **Controller** - Mengambil data artikel dari database
+   [View ArticleController Code](https://github.com/neuthos/article-system/blob/main/app/Http/Controllers/ArticleController.php)
 
 ### Perubahan pada Routes
 
-Routes dibuat untuk mengakses daftar artikel dan detail artikel:
+Route file dengan definisi lengkap untuk sistem artikel:
+[View Routes Code](https://github.com/neuthos/article-system/blob/main/routes/web.php)
 
 ```php
 // routes/web.php
@@ -91,33 +102,60 @@ Route::get('/articles', [ArticleController::class, 'index'])->name('articles.ind
 Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('articles.show');
 ```
 
-### Perubahan pada Model
-
-Model Article dimodifikasi untuk menggunakan primary key kustom:
-
-```php
-class Article extends Model
-{
-    protected $primaryKey = 'id_article';
-
-    protected $fillable = [
-        'title', 'slug', 'author', 'summary', 'content',
-        'image', 'published', 'published_at'
-    ];
-
-    protected $casts = [
-        'published' => 'boolean',
-        'published_at' => 'datetime'
-    ];
-}
-```
-
 ### Perubahan pada Views
 
-Views dibuat untuk menampilkan data dengan komponen yang telah dibuat sebelumnya:
+1. **Blade Templates** - Template untuk menampilkan data
+   [View Home Page](https://github.com/neuthos/article-system/blob/main/resources/views/home.blade.php)
+   [View Articles Index](https://github.com/neuthos/article-system/blob/main/resources/views/articles/index.blade.php)
+   [View Article Show](https://github.com/neuthos/article-system/blob/main/resources/views/articles/show.blade.php)
 
--   Home page menampilkan artikel featured
--   Articles index menampilkan daftar semua artikel dengan paginasi
--   Articles show menampilkan detail lengkap artikel
+2. **Blade Components** - Komponen untuk bagian-bagian UI
+   [View Components Folder](https://github.com/neuthos/article-system/blob/main/resources/views/components)
 
-Semua kode komponen dan views telah dikonfigurasi untuk menampilkan data artikel dari database dengan tampilan yang menarik menggunakan Tailwind CSS.
+## Cara Menjalankan Aplikasi
+
+1. **Clone Repository**
+
+    ```bash
+    git clone https://github.com/neuthos/article-system.git
+    cd article-system
+    ```
+
+2. **Install Dependencies**
+
+    ```bash
+    composer install
+    npm install
+    ```
+
+3. **Setup Environment**
+
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+
+4. **Konfigurasi Database**
+
+    - Edit file `.env` dan sesuaikan konfigurasi database
+
+5. **Migrasi dan Seeding**
+
+    ```bash
+    php artisan migrate:fresh --seed
+    ```
+
+6. **Compile Assets**
+
+    ```bash
+    npm run dev
+    ```
+
+7. **Jalankan Aplikasi**
+
+    ```bash
+    php artisan serve
+    ```
+
+8. **Akses Aplikasi**
+   Buka browser dan akses `http://localhost:8000`
