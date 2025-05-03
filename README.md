@@ -3,20 +3,20 @@
 Kami telah membuat tampilan untuk sistem artikel yang terbagi menjadi beberapa komponen:
 
 1. **Article Card Component** - Tampilan kartu artikel untuk daftar artikel
-   [View Code](https://github.com/your-repo/article-system/blob/main/resources/views/components/article-card.blade.php)
+   [View Code](https://github.com/neuthos/article-system/blob/main/resources/views/components/article-card.blade.php)
 
 2. **Article List Component** - Tampilan daftar artikel dengan paginasi
-   [View Code](https://github.com/your-repo/article-system/blob/main/resources/views/components/article-list.blade.php)
+   [View Code](https://github.com/neuthos/article-system/blob/main/resources/views/components/article-list.blade.php)
 
 3. **Article Detail Component** - Tampilan detail artikel lengkap
-   [View Code](https://github.com/your-repo/article-system/blob/main/resources/views/components/article-detail.blade.php)
+   [View Code](https://github.com/neuthos/article-system/blob/main/resources/views/components/article-detail.blade.php)
 
 4. **Layout Utama** - Struktur utama halaman dengan header dan footer
-   [View Code](https://github.com/your-repo/article-system/blob/main/resources/views/layouts/app.blade.php)
+   [View Code](https://github.com/neuthos/article-system/blob/main/resources/views/layouts/app.blade.php)
 
 5. **Halaman Index dan Show** - Halaman untuk menampilkan daftar dan detail artikel
-   [View Code Index](https://github.com/your-repo/article-system/blob/main/resources/views/articles/index.blade.php)
-   [View Code Show](https://github.com/your-repo/article-system/blob/main/resources/views/articles/show.blade.php)
+   [View Code Index](https://github.com/neuthos/article-system/blob/main/resources/views/articles/index.blade.php)
+   [View Code Show](https://github.com/neuthos/article-system/blob/main/resources/views/articles/show.blade.php)
 
 ## Question 2: Tuliskan perintah untuk membuat komponen, model, dan migrasi untuk membuat tabel yang akan digunakan sebagai artikel. Primary key tidak boleh hanya id tetapi id_artikel (jika menggunakan tabel artikel atau id_blog jika menggunakan tabel blog! (LO2)
 
@@ -65,7 +65,7 @@ Seeder dibuat untuk mengisi 25 artikel dengan data asli (bukan lorem ipsum):
 php artisan make:seeder ArticleSeeder
 ```
 
-[View Full Seeder Code](https://github.com/your-repo/article-system/blob/main/database/seeders/ArticleSeeder.php)
+[View Full Seeder Code](https://github.com/neuthos/article-system/blob/main/database/seeders/ArticleSeeder.php)
 
 Untuk menjalankan seeder:
 
@@ -78,7 +78,7 @@ php artisan db:seed --class=ArticleSeeder
 ### Perubahan pada Controller
 
 Kami telah mengimplementasikan controller yang mengambil dan menampilkan data dari database:
-[View ArticleController Code](https://github.com/your-repo/article-system/blob/main/app/Http/Controllers/ArticleController.php)
+[View ArticleController Code](https://github.com/neuthos/article-system/blob/main/app/Http/Controllers/ArticleController.php)
 
 ### Perubahan pada Routes
 
