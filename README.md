@@ -174,15 +174,15 @@ Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('articl
 
 ### Migrasi Categories Table
 
-[View Categories Migration](https://github.com/neuthos/article-system/blob/main/database/migrations/xxxx_xx_xx_create_categories_table.php)
+[View Categories Migration](https://github.com/neuthos/article-system/blob/main/database/migrations/2025_05_11_125835_create_categories_table.php)
 
 ### Migrasi Levels Table
 
-[View Levels Migration](https://github.com/neuthos/article-system/blob/main/database/migrations/xxxx_xx_xx_create_levels_table.php)
+[View Levels Migration](https://github.com/neuthos/article-system/blob/main/database/migrations/2025_05_11_125839_create_levels_table.php)
 
 ### Migrasi untuk Menambahkan Foreign Key ke Article
 
-[View Foreign Key Migration](https://github.com/neuthos/article-system/blob/main/database/migrations/xxxx_xx_xx_add_category_and_level_to_articles.php)
+[View Foreign Key Migration](https://github.com/neuthos/article-system/blob/main/database/migrations/2025_05_11_125845_add_category_and_level_to_articles.php)
 
 ## Question 2: Source Code untuk Insert Data pada Seluruh Tabel
 
