@@ -15,7 +15,20 @@
     @endif
     <div class="p-6">
         <div class="flex items-center mb-3">
-            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold uppercase tracking-wide">Article</span>
+            @if($article->category)
+            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold uppercase tracking-wide">
+                {{ $article->category->name }}
+            </span>
+            @else
+            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full font-semibold uppercase tracking-wide">Uncategorized</span>
+            @endif
+
+            @if($article->level)
+            <span class="ml-2 inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-semibold uppercase tracking-wide">
+                {{ $article->level->name }}
+            </span>
+            @endif
+
             <span class="mx-2 text-gray-300">•</span>
             <span class="text-gray-500 text-sm">{{ $article->published_at->format('F j, Y') }}</span>
         </div>

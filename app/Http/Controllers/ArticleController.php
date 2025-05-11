@@ -12,11 +12,14 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::where('published', true)
+        $articles = Article::with(['category', 'level'])
+                        ->where('published', true)
                         ->orderBy('published_at', 'desc')
                         ->paginate(9);
 
-        return view('articles.index', compact('articles'));
+        $title = 'All Articles';
+
+        return view('articles.index', compact('articles', 'title'));
     }
 
     /**
@@ -24,6 +27,10 @@ class ArticleController extends Controller
      */
     public function create()
     {
+        if (Gate::denies('manage-articles')) {
+            abort(403, 'Unauthorized action.');
+        }
+
         return view('articles.create');
     }
 
@@ -74,7 +81,15 @@ class ArticleController extends Controller
      */
     public function edit(string $slug)
     {
+        if (Gate::denies('edit-article', $article)) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $article = Article::where('slug', $slug)->firstOrFail();
+
+        if (Gate::denies('edit-article', $article)) {
+            abort(403, 'Unauthorized action.');
+        }
 
         return view('articles.edit', compact('article'));
     }

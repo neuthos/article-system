@@ -19,11 +19,28 @@ class Article extends Model
         'content',
         'image',
         'published',
-        'published_at'
+        'published_at',
+        'category_id',
+        'level_id'
     ];
 
     protected $casts = [
         'published' => 'boolean',
         'published_at' => 'datetime'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'author', 'name');
+    }
 }
