@@ -10,13 +10,13 @@ class CategorySeeder extends Seeder
 {
     public function run(): void
     {
-        // Nonaktifkan foreign key constraint sementara
+
         \DB::statement('PRAGMA foreign_keys = OFF');
 
-        // Hapus semua kategori yang ada
+
         Category::truncate();
 
-        // Aktifkan kembali foreign key constraint
+
         \DB::statement('PRAGMA foreign_keys = ON');
 
         $categories = [
@@ -45,7 +45,7 @@ class CategorySeeder extends Seeder
         foreach ($categories as $category) {
             $slug = Str::slug($category['name']);
 
-            // Cek apakah kategori dengan slug ini sudah ada
+
             if (!Category::where('slug', $slug)->exists()) {
                 Category::create([
                     'name' => $category['name'],

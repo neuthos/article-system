@@ -11,13 +11,13 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        // Nonaktifkan foreign key constraint sementara
+
         \DB::statement('PRAGMA foreign_keys = OFF');
 
-        // Hapus semua user kecuali user yang mungkin sedang login
+
         User::where('email', '!=', 'test@example.com')->delete();
 
-        // Aktifkan kembali foreign key constraint
+
         \DB::statement('PRAGMA foreign_keys = ON');
 
         $users = [
@@ -64,7 +64,7 @@ class UserSeeder extends Seeder
         ];
 
         foreach ($users as $userData) {
-            // Cek apakah user dengan email ini sudah ada
+
             if (!User::where('email', $userData['email'])->exists()) {
                 User::create([
                     'name' => $userData['name'],

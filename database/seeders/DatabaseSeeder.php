@@ -16,19 +16,19 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // Nonaktifkan foreign key constraint
+
         Schema::disableForeignKeyConstraints();
 
-        // Bersihkan semua data dari tabel secara manual
+
         User::truncate();
         Category::truncate();
         Level::truncate();
         Article::truncate();
 
-        // Aktifkan kembali foreign key constraint
+
         Schema::enableForeignKeyConstraints();
 
-        // 1. Buat Users
+
         $users = [
             [
                 'name' => 'Dr. Sarah Johnson',
@@ -82,7 +82,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        // 2. Buat Categories
+
         $categories = [
             [
                 'name' => 'Technology',
@@ -116,7 +116,7 @@ class DatabaseSeeder extends Seeder
             $categoryInstances[] = $categoryModel;
         }
 
-        // 3. Buat Levels
+
         $levels = [
             [
                 'name' => 'Beginner',
@@ -146,7 +146,7 @@ class DatabaseSeeder extends Seeder
             $levelInstances[] = $levelModel;
         }
 
-        // 4. Buat Articles (tambahkan beberapa artikel sebagai contoh)
+
         $articles = [
             [
                 'title' => 'The Future of Artificial Intelligence in Healthcare',
@@ -164,7 +164,7 @@ class DatabaseSeeder extends Seeder
                 'published' => true,
                 'published_at' => Carbon::now()->subDays(7)
             ],
-            // Tambahkan artikel lain sesuai kebutuhan
+
         ];
 
         foreach ($articles as $index => $article) {
